@@ -34,6 +34,14 @@
           </tr>
         </tbody>
       </table>
+      <table>
+        <tbody>
+          <%= render 'book_comments/comment_index', book: @book %>
+        </tbody>
+      </table>
+      <div>
+        <%= render 'book_comments/comment_new', book: @book, book_comment: @book_comment %>
+      </div>
     </div>
   </div>
 </div>
