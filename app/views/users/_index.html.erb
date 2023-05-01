@@ -23,7 +23,9 @@
           フォロワー数：<%= user.followers.count %>
         </td>
         <td>
-          <% if user != current_user %>
+          <% if user == current_user || user.name == "guestuser" || current_user.name == "guestuser"  %>
+            <div></div>
+          <% else %>
             <%= render 'relationships/follower', user: user %>
           <% end %>
         </td>

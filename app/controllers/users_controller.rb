@@ -30,23 +30,22 @@ class UsersController < ApplicationController
 
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :profile_image, :introduction)
-  end
-
-  def is_matching_login_user
-    user = User.find(params[:id])
-    unless user == current_user
-      redirect_to user_path(current_user)
+    def user_params
+      params.require(:user).permit(:name, :profile_image, :introduction)
     end
-  end
 
-  def ensure_guest_user
-    @user = User.find(params[:id])
-    if @user.name ==  "guestuser"
-      redirect_to user_path(current_user),notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    def is_matching_login_user
+      user = User.find(params[:id])
+      unless user == current_user
+        redirect_to user_path(current_user)
+      end
     end
-  end
+
+    def ensure_guest_user
+      @user = User.find(params[:id])
+      if @user.name ==  "guestuser"
+        redirect_to user_path(current_user),notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      end
+    end
 
 end
