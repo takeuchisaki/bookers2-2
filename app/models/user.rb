@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
+  has_many :group_users
+  has_many :groups, through: :group_users
+  
 
   validates :name, uniqueness: true, length: { in: 2..20 }
   validates :introduction, length: { maximum: 50 }

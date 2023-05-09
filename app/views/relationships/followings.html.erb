@@ -2,6 +2,9 @@
 <% if @users.empty? %>
   <span>ユーザーはいません</span>
 <% else %>
+  <div>
+    <%=link_to "グループを作成する",new_group_path %> | <%=link_to "グループ一覧",groups_path %>
+  </div>
   <table class="table">
     <thead>
       <tr>
