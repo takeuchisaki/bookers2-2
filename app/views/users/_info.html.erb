@@ -11,11 +11,21 @@
       <th>introduction</th>
       <th><%= user.introduction %></th>
     </tr>
+    <tr>
       <th>follows</th>
-      <th><%= link_to user.followings.count, user_followings_path(user) %></th>
+      <th>
+        <%= link_to user_followings_path(user) do %>
+          <span class="following_count_<%= user.id %>"><%= user.followings.count %></span>
+        <% end %>
+      </th>
     </tr>
+    <tr>
       <th>followers</th>
-      <th><%= link_to user.followers.count, user_followers_path(user) %></th>
+      <th>
+        <%= link_to user_followers_path(user) do  %>
+          <span class="follower_count_<%= user.id %>"><%= user.followers.count %></span>
+        <% end %>
+      </th>
     </tr>
   </tbody>
 </table>
@@ -29,15 +39,13 @@
   <% elsif user.name == "guestuser" %>
     <div></div>
   <% else %>
-    <% if current_user.following?(user) %>
-      <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class:'btn btn-info' %>
-    <% else %>
-      <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:'btn btn-success' %>
-    <% end %>
+    <div class="follower_<%= user.id %>">
+      <%= render 'relationships/follower', user: user %>
+    </div>
   <% end %>
 </div>
 <div>
   <% if current_user != user %>
     <%= link_to 'Begin Chat', chat_path(user.id) %>
-  <% end %> 
+  <% end %>
 </div>

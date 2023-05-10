@@ -17,16 +17,24 @@
           <%= user.name %>
         </td>
         <td>
-          フォロー数：<%= user.followings.count %>
+          フォロー数：
+            <% if user == current_user %>
+              <span class="following_count_<%= current_user.id %>"><%= current_user.followings.count %></span>
+            <% else %>
+              <span><%= user.followings.count %></span>
+            <% end %>
         </td>
         <td>
-          フォロワー数：<%= user.followers.count %>
+          フォロワー数：
+          <span class="follower_count_<%= user.id %>"><%= user.followers.count %></span>
         </td>
         <td>
           <% if user == current_user || user.name == "guestuser" || current_user.name == "guestuser"  %>
             <div></div>
           <% else %>
-            <%= render 'relationships/follower', user: user %>
+            <div class="follower_<%= user.id %>">
+              <%= render 'relationships/follower', user: user %>
+            </div>
           <% end %>
         </td>
         <td>
