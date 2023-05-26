@@ -28,16 +28,14 @@
               コメント数：
               <span class="comment"><%= @book.book_comments.count %></span>
             </td>
-            <td>
-              <% if @user == current_user %>
+            <% if @user == current_user %>
+              <td>
                 <%= link_to 'Edit', edit_book_path(@book), class:"btn btn-sm btn-success edit_book_76189" %>
-              <% end %>
-            </td>
-            <td>
-              <% if @user == current_user %>
+              </td>
+              <td>
                 <%= link_to 'Destroy', book_path(@book), method: :delete, class:"btn btn-sm btn-danger destroy_book_76189", "data-confirm" => "本当に削除しますか？" %>
-              <% end %>
-            </td>
+              </td>
+            <% end %>
           </tr>
         </tbody>
       </table>
@@ -48,7 +46,7 @@
         </tbody>
       </table>
       <div>
-        <%= render "book_comments/comment_new",book: @book,book_comment: @book_comment %></div>
+        <%= render 'book_comments/comment_new', book: @book, book_comment: @book_comment %></div>
       </div>
     </div>
   </div>
